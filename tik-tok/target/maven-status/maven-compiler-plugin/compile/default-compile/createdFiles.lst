@@ -1,0 +1,7 @@
+com\tiktok\pojo\UserInformation.class
+com\tiktok\mapper\UserMapper.class
+com\tiktok\controller\BaseController.class
+com\tiktok\pojo\UserRegister.class
+com\tiktok\service\BaseService.class
+com\tiktok\controller\ExtensionControllerONE.class
+com\tiktok\service\impl\BaseServiceImpl.class
