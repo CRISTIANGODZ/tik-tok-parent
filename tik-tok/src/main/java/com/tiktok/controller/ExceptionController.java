@@ -1,5 +1,6 @@
 package com.tiktok.controller;
 
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -15,7 +16,14 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class ExceptionController {
 
     @ExceptionHandler(NullPointerException.class)
-    public String HandlerArithmeticException(NullPointerException arithmeticException){
-        return "loginError";
+    public String HandlerArithmeticException(NullPointerException arithmeticException, Model model){
+        model.addAttribute("arithmeticException",arithmeticException);
+        return "errorPage/loginError";
+    }
+
+    @ExceptionHandler(DuplicateKeyException.class)
+    public String DuplicateKeyException(DuplicateKeyException duplicateKeyException, Model model){
+        model.addAttribute("duplicateKeyException",duplicateKeyException);
+        return "errorPage/registerError";
     }
 }

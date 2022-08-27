@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>发布的视频列表</title>
+    <link rel="stylesheet" th:href="@{/static/css/index_work.css}">
+</head>
+<body>
+<table>
+    <tr>发布的视频信息</tr>
+    <tr>
+        <th>视频Id</th>
+        <th>视频名</th>
+        <th>视频发布时间</th>
+        <th>视频点赞数</th>
+    </tr>
+    <tr th:each="video : ${list}">
+        <th th:text="${video.videoId}"></th>
+        <th th:text="${video.videoTitle}"></th>
+        <th th:text="${video.videoInitTime}"></th>
+        <th th:text="${video.videoGoodNumber}"></th>
+    </tr>
+</table>
+</body>
+</html>

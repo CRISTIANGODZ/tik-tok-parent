@@ -16,7 +16,7 @@
         <result property="userPassword" column="user_password"></result>
         <association property="userInformation"
                 select="com.tiktok.mapper.UserInformationMapper.queryUserInformationStepTwo"
-                column="userId">
+                column="user_id">
         </association>
     </resultMap>
 
@@ -25,13 +25,13 @@
 
     <!--下面撰写sql语句-->
 
-    <!--void AddUser(User user);-->
-    <insert id="AddUser" parameterType="User">
+    <!--void addUser(User user);-->
+    <insert id="addUser" parameterType="User">
         insert into t_user_register values (null,#{userEmail},#{userPassword})
     </insert>
 
-    <!--Integer LoginUser(UserRegister user);-->
-    <select id="LoginUser" resultType="_integer">
+    <!--Integer loginUser(UserRegister user);-->
+    <select id="loginUser" resultType="_integer">
         select user_id from t_user_register where user_email=#{userEmail} and user_password=#{userPassword}
     </select>
 

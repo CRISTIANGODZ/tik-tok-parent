@@ -14,12 +14,12 @@ public interface UserMapper {
     /**
      * 注册用户信息
      */
-    void AddUser(User user);
+    void addUser(User user);
 
     /**
      * 用户登陆接口
      */
-    Integer LoginUser(User user);
+    Integer loginUser(User user);
 
     /**
      * 查询用户信息

@@ -1,6 +1,7 @@
 package com.tiktok.controller;
 
 import com.tiktok.pojo.User;
+import com.tiktok.pojo.Video;
 import com.tiktok.service.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -72,12 +74,10 @@ public class BaseController {
     /**
      * 查询用户信息
      * 参数：
-     * data
-     * videoTitle
-     * token(用userId代替)
+     * userId
      */
-    @RequestMapping("/douyin/user/{userId}")
-    public String queryUserInformation(@PathVariable("userId") Integer userId, Model model){
+    @RequestMapping("/douyin/user")
+    public String queryUserInformation(Integer userId, Model model){
         User user = baseService.queryUserInformation(userId);
         model.addAttribute(user);
         return "userInformation";
@@ -85,6 +85,9 @@ public class BaseController {
 
     /**
      * 视频投稿接口
+     * data
+     * videoTitle
+     * token(用userId代替)
      * @return
      */
     @RequestMapping(value = "/douyin/publish/action", method = RequestMethod.POST)
@@ -114,28 +117,15 @@ public class BaseController {
     }
 
     /**
-     * 跳转到用户注册页面
+     * 显示视频列表
+     * 参数：
+     * userId,token(暂时不用)
      */
-    @RequestMapping(value = "/douyin/to/regist",method = RequestMethod.GET)
-    public String toUserRegister(){
-        return "register";
+    @RequestMapping("/douyin/publish/list")
+    public String getPublishedVideoList(Integer userId, Model model){
+        List<Video> publishedVideoList = baseService.getPublishedVideoList(userId);
+        model.addAttribute("list", publishedVideoList);
+        return "videoList";
     }
-
-    /**
-     * 跳转到用户登录页面
-     */
-    @RequestMapping("/douyin/to/login")
-    public String toUserLogin(){
-        return "login";
-    }
-
-    /**
-     * 跳转到上传视频页面
-     */
-    @RequestMapping("/douyin/to/publish")
-    public String toPublishVideo(){
-        return "publishVideo";
-    }
-
 
 }

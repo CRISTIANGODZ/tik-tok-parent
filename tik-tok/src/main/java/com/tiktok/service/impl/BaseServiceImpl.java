@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * @auther DyingZhang
  * @Create 2022-08-26 12:04
@@ -32,14 +34,14 @@ public class BaseServiceImpl implements BaseService{
      * 注册用户信息
      */
     public void registeUser(User user) {
-        userMapper.AddUser(user);
+        userMapper.addUser(user);
     }
 
     /**
      * 用户登陆接口
      */
     public Integer getLogin(User user) {
-        Integer userId = userMapper.LoginUser(user);
+        Integer userId = userMapper.loginUser(user);
         return userId;
     }
 
@@ -63,6 +65,17 @@ public class BaseServiceImpl implements BaseService{
     @Override
     public void dealWithUserVideoInformation(Integer userId, String videoTitle) {
         Video video = new Video(userId, null, videoTitle, null, 0);
-        videoMapper.InitVideoColumnByUserId(video);
+        videoMapper.initVideoColumnByUserId(video);
+    }
+
+    /**
+     * 显示视频列表
+     * 参数：
+     * userId,token(暂时不用)
+     */
+    @Override
+    public List<Video> getPublishedVideoList(Integer userId) {
+        List<Video> publishedVideoList = videoMapper.getPublishedVideoList(userId);
+        return publishedVideoList;
     }
 }

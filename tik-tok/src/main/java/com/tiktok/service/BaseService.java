@@ -1,6 +1,9 @@
 package com.tiktok.service;
 
 import com.tiktok.pojo.User;
+import com.tiktok.pojo.Video;
+
+import java.util.List;
 
 /**
  * @auther DyingZhang
@@ -29,5 +32,12 @@ public interface BaseService {
      * 视频投稿接口：处理用户和视频的信息
      */
     void dealWithUserVideoInformation(Integer userId, String videoTitle);
+
+    /**
+     * 显示视频列表
+     * 参数：
+     * userId,token(暂时不用)
+     */
+    List<Video> getPublishedVideoList(Integer userId);
 }
 

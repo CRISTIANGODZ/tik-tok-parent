@@ -15,11 +15,17 @@
 
     <!--下面撰写sql语句-->
 
-    <!--void InitVideoColumnByUserId(Video video);-->
-    <insert id="InitVideoColumnByUserId" parameterType="Video">
+    <!--void initVideoColumnByUserId(Video video);-->
+    <insert id="initVideoColumnByUserId" parameterType="Video">
         INSERT INTO t_video(video_title,video_init_time,video_good_number,user_id)
         VALUES(#{videoTitle},NOW(),#{videoGoodNumber},#{userId})
     </insert>
+
+    <!--List getPublishedVideoList(Integer userId);-->
+    <select id="getPublishedVideoList" resultType="Video">
+        select * from t_video
+        where user_id = #{userId}
+    </select>
 
     <!--上面撰写sql语句-->
 
