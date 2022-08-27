@@ -8,6 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 /**
  * @auther DyingZhang
@@ -23,7 +30,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *      发布列表         /douyin/publish/list --> GET
  *
  *     -跳转到用户注册页面/douyin/to/registe --> GET
- *     -跳转到用户登录页面/douyin/to/login -->GET
+ *     -跳转到用户登录页面/douyin/to/login --> GET
+ *     -跳转到上传视频页面/douyin/to/publish --> GET
  *
  */
 @Controller
@@ -53,8 +61,8 @@ public class BaseController {
             System.out.println(1/0);
         } else {
             String token = user.getUserEmail() + user.getUserPassword();
-            model.addAttribute("token",token);
-            model.addAttribute("userId",userId);
+            model.addAttribute(token);
+            model.addAttribute(userId);
         }
         return "success";
     }
@@ -65,8 +73,36 @@ public class BaseController {
     @RequestMapping("/douyin/user/{userId}")
     public String queryUserInformation(@PathVariable("userId") Integer userId, Model model){
         User user = baseService.queryUserInformation(userId);
-        model.addAttribute("list",user);
+        model.addAttribute(user);
         return "userInformation";
+    }
+
+    /**
+     * 视频投稿接口
+     * @return
+     */
+    @RequestMapping(value = "/douyin/publish/action", method = RequestMethod.POST)
+    public String VideoContributionController(MultipartFile video, HttpSession session) throws IOException {
+        //获取文件名
+        String originalFilename = video.getOriginalFilename();
+        //随机生成新的文件名
+        String fileSuffixName = originalFilename.substring(originalFilename.lastIndexOf("."));
+        String uuid = UUID.randomUUID().toString();
+        String realFileName = uuid + fileSuffixName;
+        //获取ServletContext对象
+        ServletContext servletContext = session.getServletContext();
+        //获取当前工程的真实路径
+        String videoRespority = servletContext.getRealPath("userRespority/videoRespority");
+        //创建videoRespority所对应的File对象
+        File file = new File(videoRespority);
+        if (!file.exists()){
+            file.mkdir();
+        }
+        //得到最终路径
+        String finalPath = videoRespority + File.separator + realFileName;
+        //上传文件
+        video.transferTo(new File(finalPath));
+        return "success";
     }
 
     /**
@@ -78,13 +114,20 @@ public class BaseController {
     }
 
     /**
-     * 跳转到用户登录界面
+     * 跳转到用户登录页面
      */
     @RequestMapping("/douyin/to/login")
     public String toUserLogin(){
         return "login";
     }
 
+    /**
+     * 跳转到上传视频页面
+     */
+    @RequestMapping("/douyin/to/publish")
+    public String toPublishVideo(){
+        return "publishVideo";
+    }
 
 
 }

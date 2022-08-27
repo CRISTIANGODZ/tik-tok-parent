@@ -1,7 +1,9 @@
-C:\Users\DyingZhang\IdeaProjects\tik-tok-parent\tik-tok\src\main\java\com\tiktok\pojo\UserRegister.java
-C:\Users\DyingZhang\IdeaProjects\tik-tok-parent\tik-tok\src\main\java\com\tiktok\controller\ExtensionControllerONE.java
-C:\Users\DyingZhang\IdeaProjects\tik-tok-parent\tik-tok\src\main\java\com\tiktok\pojo\UserInformation.java
-C:\Users\DyingZhang\IdeaProjects\tik-tok-parent\tik-tok\src\main\java\com\tiktok\service\impl\BaseServiceImpl.java
-C:\Users\DyingZhang\IdeaProjects\tik-tok-parent\tik-tok\src\main\java\com\tiktok\controller\BaseController.java
-C:\Users\DyingZhang\IdeaProjects\tik-tok-parent\tik-tok\src\main\java\com\tiktok\service\BaseService.java
-C:\Users\DyingZhang\IdeaProjects\tik-tok-parent\tik-tok\src\main\java\com\tiktok\mapper\UserMapper.java
+F:\workspace-idea\workspace-tiktok\tik-tok-parent\tik-tok\src\main\java\com\tiktok\mapper\UserMapper.java
+F:\workspace-idea\workspace-tiktok\tik-tok-parent\tik-tok\src\main\java\com\tiktok\controller\ExceptionController.java
+F:\workspace-idea\workspace-tiktok\tik-tok-parent\tik-tok\src\main\java\com\tiktok\service\BaseService.java
+F:\workspace-idea\workspace-tiktok\tik-tok-parent\tik-tok\src\main\java\com\tiktok\service\impl\BaseServiceImpl.java
+F:\workspace-idea\workspace-tiktok\tik-tok-parent\tik-tok\src\main\java\com\tiktok\controller\ExtensionControllerONE.java
+F:\workspace-idea\workspace-tiktok\tik-tok-parent\tik-tok\src\main\java\com\tiktok\pojo\UserInformation.java
+F:\workspace-idea\workspace-tiktok\tik-tok-parent\tik-tok\src\main\java\com\tiktok\mapper\UserInformationMapper.java
+F:\workspace-idea\workspace-tiktok\tik-tok-parent\tik-tok\src\main\java\com\tiktok\pojo\User.java
+F:\workspace-idea\workspace-tiktok\tik-tok-parent\tik-tok\src\main\java\com\tiktok\controller\BaseController.java

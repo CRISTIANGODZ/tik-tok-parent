@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>视频上传</title>
+</head>
+<body>
+    <div align="center">
+      <form th:action="@{/douyin/publish/action}" method="post" enctype="multipart/form-data">
+          视频：<input type="file" name="video"><br>
+          <input type="submit" value="上传">
+      </form>
+    </div>
+</body>
+</html>
