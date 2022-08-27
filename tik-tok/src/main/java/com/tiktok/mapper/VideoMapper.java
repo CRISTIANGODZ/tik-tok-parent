@@ -24,4 +24,18 @@ public interface VideoMapper {
      * userId,token(暂时不用)
      */
     List<Video> getPublishedVideoList(@Param("userId") Integer userId);
+
+    /**
+     * 点赞操作：
+     * 对点赞视频的点赞数+1
+     * @param videoId
+     */
+    void giveGood(@Param("videoId") Integer videoId);
+
+    /**
+     * 取消点赞操作：
+     * 对点赞视频的点赞数-1
+     * @param videoId
+     */
+    void cancelGood(@Param("videoId") Integer videoId);
 }

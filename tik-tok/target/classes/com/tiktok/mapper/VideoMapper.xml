@@ -27,6 +27,20 @@
         where user_id = #{userId}
     </select>
 
+    <!--void giveGood(Integer videoId);-->
+    <update id="giveGood">
+        update t_video
+        set video_good_number = video_good_number + 1
+        where video_id = #{videoId}
+    </update>
+
+    <!--void cancelGood(@Param("videoId") Integer videoId);-->
+    <update id="cancelGood">
+        update t_video
+        set video_good_number = video_good_number - 1
+        where video_id = #{videoId}
+    </update>
+
     <!--上面撰写sql语句-->
 
 </mapper>

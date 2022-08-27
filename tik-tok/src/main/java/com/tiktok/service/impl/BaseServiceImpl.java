@@ -1,5 +1,6 @@
 package com.tiktok.service.impl;
 
+import com.tiktok.mapper.GoodMapper;
 import com.tiktok.mapper.UserInformationMapper;
 import com.tiktok.mapper.UserMapper;
 import com.tiktok.mapper.VideoMapper;
@@ -29,6 +30,9 @@ public class BaseServiceImpl implements BaseService{
 
     @Autowired
     private VideoMapper videoMapper;
+
+    @Autowired
+    private GoodMapper goodMapper;
 
     /**
      * 注册用户信息
@@ -77,5 +81,29 @@ public class BaseServiceImpl implements BaseService{
     public List<Video> getPublishedVideoList(Integer userId) {
         List<Video> publishedVideoList = videoMapper.getPublishedVideoList(userId);
         return publishedVideoList;
+    }
+
+    /**
+     * 进行点赞操作
+     * @param userId
+     * @param videoId
+     * 先对点赞视频的点赞数+1
+     * 再在点赞表中添加用户点赞的视频
+     */
+    @Override
+    public void giveGood(Integer userId, Integer videoId) {
+        videoMapper.giveGood(videoId);
+        goodMapper.addGoodVideo(userId,videoId);
+    }
+
+    /**
+     * 取消点赞操作
+     * @param userId
+     * @param videoId
+     */
+    @Override
+    public void cancelGood(Integer userId, Integer videoId) {
+        videoMapper.cancelGood(videoId);
+        goodMapper.deleteGoodVideo(userId,videoId);
     }
 }

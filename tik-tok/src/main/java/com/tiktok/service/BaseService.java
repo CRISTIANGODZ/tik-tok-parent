@@ -39,5 +39,19 @@ public interface BaseService {
      * userId,token(暂时不用)
      */
     List<Video> getPublishedVideoList(Integer userId);
+
+    /**
+     * 进行点赞操作
+     * @param userId
+     * @param videoId
+     */
+    void giveGood(Integer userId, Integer videoId);
+
+    /**
+     * 取消点赞操作
+     * @param userId
+     * @param videoId
+     */
+    void cancelGood(Integer userId, Integer videoId);
 }
 

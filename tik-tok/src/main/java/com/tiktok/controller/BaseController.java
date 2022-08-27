@@ -128,4 +128,12 @@ public class BaseController {
         return "videoList";
     }
 
+    /**
+     * 视频流接口
+     * 参数：
+     * latest_time
+     * token(用user_id代替)
+     */
+
+
 }
