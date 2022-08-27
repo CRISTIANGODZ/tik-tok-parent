@@ -43,6 +43,7 @@ public class BaseController {
     /**
      * 用户注册接口：
      * 添加新用户
+     * 参数：userEmail、userPassword
      * /douyin/user/register --> POST
      */
     @RequestMapping(value = "/douyin/user/register", method = RequestMethod.POST)
@@ -53,6 +54,7 @@ public class BaseController {
 
     /**
      * 用户登录接口
+     * 参数：userEmail、userPassword
      */
     @RequestMapping(value = "/douyin/user/login", method = RequestMethod.GET)
     public String userLoginController(User user, Model model){
@@ -69,6 +71,10 @@ public class BaseController {
 
     /**
      * 查询用户信息
+     * 参数：
+     * data
+     * videoTitle
+     * token(用userId代替)
      */
     @RequestMapping("/douyin/user/{userId}")
     public String queryUserInformation(@PathVariable("userId") Integer userId, Model model){
@@ -82,7 +88,7 @@ public class BaseController {
      * @return
      */
     @RequestMapping(value = "/douyin/publish/action", method = RequestMethod.POST)
-    public String VideoContributionController(MultipartFile video, HttpSession session) throws IOException {
+    public String VideoContributionController(Integer userId, String videoTitle, MultipartFile video, HttpSession session) throws IOException {
         //获取文件名
         String originalFilename = video.getOriginalFilename();
         //随机生成新的文件名
@@ -102,6 +108,8 @@ public class BaseController {
         String finalPath = videoRespority + File.separator + realFileName;
         //上传文件
         video.transferTo(new File(finalPath));
+        //处理用户和视频的信息
+        baseService.dealWithUserVideoInformation(userId,videoTitle);
         return "success";
     }
 

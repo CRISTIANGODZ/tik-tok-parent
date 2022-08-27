@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tiktok.mapper.VideoMapper">
+    <!--
+    
+  -->
+
+
+    <!--自定义映射-->
+
+    <!--自定义映射-->
+
+
+    <!--下面撰写sql语句-->
+
+    <!--void InitVideoColumnByUserId(Video video);-->
+    <insert id="InitVideoColumnByUserId" parameterType="Video">
+        INSERT INTO t_video(video_title,video_init_time,video_good_number,user_id)
+        VALUES(#{videoTitle},NOW(),#{videoGoodNumber},#{userId})
+    </insert>
+
+    <!--上面撰写sql语句-->
+
+</mapper>

@@ -1,5 +1,7 @@
 package com.tiktok.pojo;
 
+import java.util.Arrays;
+
 /**
  * @auther DyingZhang
  * @Create 2022-08-26 13:07
@@ -15,14 +17,17 @@ public class User {
 
     private UserInformation userInformation;
 
+    private Video[] videos;
+
     public User() {
     }
 
-    public User(Integer userId, String userEmail, String userPassword, UserInformation userInformation) {
+    public User(Integer userId, String userEmail, String userPassword, UserInformation userInformation, Video[] videos) {
         this.userId = userId;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
         this.userInformation = userInformation;
+        this.videos = videos;
     }
 
     public Integer getUserId() {
@@ -57,13 +62,22 @@ public class User {
         this.userInformation = userInformation;
     }
 
+    public Video[] getVideos() {
+        return videos;
+    }
+
+    public void setVideos(Video[] videos) {
+        this.videos = videos;
+    }
+
     @Override
     public String toString() {
-        return "UserRegister{" +
+        return "User{" +
                 "userId=" + userId +
                 ", userEmail='" + userEmail + '\'' +
                 ", userPassword='" + userPassword + '\'' +
                 ", userInformation=" + userInformation +
+                ", videos=" + Arrays.toString(videos) +
                 '}';
     }
 }

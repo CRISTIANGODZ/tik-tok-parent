@@ -44,6 +44,6 @@
         where t_user_register.user_id = #{userId}
     </select>
 
-    <!--下面撰写sql语句-->
+    <!--上面撰写sql语句-->
 
 </mapper>

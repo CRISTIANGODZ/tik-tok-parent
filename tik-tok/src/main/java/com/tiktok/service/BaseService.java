@@ -24,5 +24,10 @@ public interface BaseService {
      * 查询用户信息
      */
     User queryUserInformation(Integer userId);
+
+    /**
+     * 视频投稿接口：处理用户和视频的信息
+     */
+    void dealWithUserVideoInformation(Integer userId, String videoTitle);
 }
 

@@ -8,6 +8,8 @@
     <div align="center">
       <form th:action="@{/douyin/publish/action}" method="post" enctype="multipart/form-data">
           视频：<input type="file" name="video"><br>
+          设置视频名称：<input type="text" name="videoTitle"><br>
+          上传作者的id：<input type="text" name="userId"><br>
           <input type="submit" value="上传">
       </form>
     </div>

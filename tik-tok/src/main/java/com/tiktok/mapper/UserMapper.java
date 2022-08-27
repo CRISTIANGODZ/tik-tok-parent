@@ -1,6 +1,7 @@
 package com.tiktok.mapper;
 
 import com.tiktok.pojo.User;
+import com.tiktok.pojo.Video;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -24,4 +25,6 @@ public interface UserMapper {
      * 查询用户信息
      */
     User queryUserInformation(@Param("userId") Integer userId);
+
+
 }
