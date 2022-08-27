@@ -3,8 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>用户信息</title>
+    <link rel="stylesheet" th:href="@{/static/css/index_work.css}">
 </head>
 <body>
+    <table>
+        <tr colspan="3">
+            <th>用户信息</th>
+        </tr>
+        <tr>
+            <td>流水号</td>
+            <td>邮箱</td>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>性别</td>
+            <td>家庭住址</td>
+            <td>学校</td>
+            <td>电话</td>
+            <td>简介</td>
+            <td>生日</td>
+        </tr>
+        <tr th:each="user : ${list}">
+            <td th:text="${user.userId}"></td>
+            <td th:text="${user.userEmail}"></td>
+            <td th:ref="${user.userInformation.userName}"></td>
+            <td th:ref="${user.userInformation.userAge}"></td>
+            <td th:ref="${user.userInformation.userGender}"></td>
+            <td th:ref="${user.userInformation.userHome}"></td>
+            <td th:ref="${user.userInformation.userSchool}"></td>
+            <td th:ref="${user.userInformation.userPhone}"></td>
+            <td th:ref="${user.userInformation.userIntroduction}"></td>
+            <td th:ref="${user.userInformation.userBirthday}"></td>
+        </tr>
+    </table>
 
 </body>
 </html>

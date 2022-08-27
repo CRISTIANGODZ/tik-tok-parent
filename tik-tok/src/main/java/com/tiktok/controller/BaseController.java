@@ -53,8 +53,8 @@ public class BaseController {
             System.out.println(1/0);
         } else {
             String token = user.getUserEmail() + user.getUserPassword();
-            model.addAttribute(token);
-            model.addAttribute(userId);
+            model.addAttribute("token",token);
+            model.addAttribute("userId",userId);
         }
         return "success";
     }
@@ -65,7 +65,7 @@ public class BaseController {
     @RequestMapping("/douyin/user/{userId}")
     public String queryUserInformation(@PathVariable("userId") Integer userId, Model model){
         User user = baseService.queryUserInformation(userId);
-        model.addAttribute(user);
+        model.addAttribute("list",user);
         return "userInformation";
     }
 
