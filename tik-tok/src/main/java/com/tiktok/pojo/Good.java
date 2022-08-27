@@ -7,39 +7,51 @@ package com.tiktok.pojo;
  */
 public class Good {
 
-    private Integer user_id;
+    private Integer userId;
 
-    private Integer video_id;
+    private Integer videoId;
+
+    private Video video;
 
     public Good() {
     }
 
-    public Good(Integer user_id, Integer video_id) {
-        this.user_id = user_id;
-        this.video_id = video_id;
+    public Good(Integer userId, Integer videoId, Video video) {
+        this.userId = userId;
+        this.videoId = videoId;
+        this.video = video;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getVideo_id() {
-        return video_id;
+    public Integer getVideoId() {
+        return videoId;
     }
 
-    public void setVideo_id(Integer video_id) {
-        this.video_id = video_id;
+    public void setVideoId(Integer videoId) {
+        this.videoId = videoId;
+    }
+
+    public Video getVideo() {
+        return video;
+    }
+
+    public void setVideo(Video video) {
+        this.video = video;
     }
 
     @Override
     public String toString() {
         return "Good{" +
-                "user_id=" + user_id +
-                ", video_id=" + video_id +
+                "userId=" + userId +
+                ", videoId=" + videoId +
+                ", video=" + video +
                 '}';
     }
 }

@@ -1,6 +1,9 @@
 package com.tiktok.mapper;
 
+import com.tiktok.pojo.Good;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @auther DyingZhang
@@ -24,4 +27,10 @@ public interface GoodMapper {
      * @param videoId
      */
     void deleteGoodVideo(@Param("userId") Integer userId,@Param("videoId") Integer videoId);
+
+    /**
+     * 获取用户的点赞列表
+     * @param userId
+     */
+    List<Good> getGoodVideoList(Integer userId);
 }

@@ -10,6 +10,15 @@
 
     <!--自定义映射-->
 
+    <resultMap id="GoodVideoList" type="Good">
+        <id property="userId" column="user_id"></id>
+        <result property="videoId" column="video_id"></result>
+        <association property="video"
+                     select="com.tiktok.mapper.VideoMapper.getGoodVideoListStepTwo"
+                     column="video_id">
+        </association>
+    </resultMap>
+
     <!--自定义映射-->
 
 
@@ -33,6 +42,14 @@
             </if>
         </where>
     </delete>
+
+    <!--List<Good> getGoodVideoList(Integer userId);-->
+    <select id="getGoodVideoList" resultMap="GoodVideoList">
+        SELECT t_good.user_id,t_good.video_id,t_video.video_title,t_video.video_init_time,t_video.video_good_number
+        FROM t_good LEFT JOIN t_video
+        ON t_good.video_id = t_video.video_id
+        WHERE t_good.user_id = #{userId}
+    </select>
 
     <!--上面撰写sql语句-->
 

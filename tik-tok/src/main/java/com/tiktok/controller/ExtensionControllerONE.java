@@ -1,5 +1,6 @@
 package com.tiktok.controller;
 
+import com.tiktok.pojo.Good;
 import com.tiktok.service.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -7,13 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 /**
  * @auther DyingZhang
  * @Create 2022-08-26 12:01
  * @Discriptioon
  * 扩展接口一：
- *      点赞接口      /douyin/favorite/action --> 赞操作
- *      点赞列表接口  /douyin/favorite/list --> 点赞列表
+ *      点赞接口      /douyin/favorite/action --> POST
+ *      点赞列表接口  /douyin/favorite/list --> GET
  *      评论接口      /douyin/comment/action --> 评论操作
  *      视频评论列表  /douyin/comment/list --> 视频评论列表
  */
@@ -23,6 +26,15 @@ public class ExtensionControllerONE {
     @Autowired
     private BaseServiceImpl baseService;
 
+    /**
+     * 点赞接口：
+     * @param userId
+     * @param videoId
+     * @param actionType
+     * @param model
+     * @return
+     * 根据action实行点赞和取消赞
+     */
     @RequestMapping(value = "/douyin/favorite/action",method = RequestMethod.POST)
     public String goodController(Integer userId, Integer videoId, Integer actionType, Model model){
         //actionType是1则点赞
@@ -38,6 +50,18 @@ public class ExtensionControllerONE {
         } else {
             return "errorPage/normalError";
         }
+        return "success";
+    }
+
+    /**
+     * 获取某个用户的点赞列表
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "/douyin/favorite/list",method = RequestMethod.GET)
+    public String getGoodListController(Integer userId,Model model){
+        List<Good> goodVideoList = baseService.getGoodVideoList(userId);
+        model.addAttribute("goodVideoList",goodVideoList);
         return "success";
     }
 

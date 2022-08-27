@@ -41,6 +41,13 @@
         where video_id = #{videoId}
     </update>
 
+    <!--Video getGoodVideoListStepTwo(@Param("videoId") Integer videoId);-->
+    <select id="getGoodVideoListStepTwo" resultType="Video">
+        select video_id,video_title,video_init_time,video_good_number
+        from t_video
+        where video_id = #{videoId}
+    </select>
+
     <!--上面撰写sql语句-->
 
 </mapper>

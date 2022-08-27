@@ -38,4 +38,10 @@ public interface VideoMapper {
      * @param videoId
      */
     void cancelGood(@Param("videoId") Integer videoId);
+
+    /**
+     * 获取点赞列表第二步
+     * @param videoId
+     */
+    Video getGoodVideoListStepTwo(@Param("videoId") Integer videoId);
 }

@@ -4,6 +4,7 @@ import com.tiktok.mapper.GoodMapper;
 import com.tiktok.mapper.UserInformationMapper;
 import com.tiktok.mapper.UserMapper;
 import com.tiktok.mapper.VideoMapper;
+import com.tiktok.pojo.Good;
 import com.tiktok.pojo.User;
 import com.tiktok.pojo.Video;
 import com.tiktok.service.BaseService;
@@ -105,5 +106,17 @@ public class BaseServiceImpl implements BaseService{
     public void cancelGood(Integer userId, Integer videoId) {
         videoMapper.cancelGood(videoId);
         goodMapper.deleteGoodVideo(userId,videoId);
+    }
+
+    /**
+     * 获取某个用户的点赞列表
+     *
+     * @param userId
+     * @return
+     */
+    @Override
+    public List<Good> getGoodVideoList(Integer userId) {
+        List<Good> goodVideoList = goodMapper.getGoodVideoList(userId);
+        return goodVideoList;
     }
 }

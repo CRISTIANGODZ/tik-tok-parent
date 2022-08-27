@@ -73,8 +73,7 @@ public class BaseController {
 
     /**
      * 查询用户信息
-     * 参数：
-     * userId
+     * @param userId
      */
     @RequestMapping("/douyin/user")
     public String queryUserInformation(Integer userId, Model model){
@@ -85,8 +84,9 @@ public class BaseController {
 
     /**
      * 视频投稿接口
-     * data
-     * videoTitle
+     * @param video
+     * @param videoTitle
+     * @param userId
      * token(用userId代替)
      * @return
      */
@@ -119,9 +119,10 @@ public class BaseController {
     /**
      * 显示视频列表
      * 参数：
-     * userId,token(暂时不用)
+     * @param userId
+     * token(暂时不用)
      */
-    @RequestMapping("/douyin/publish/list")
+    @RequestMapping(value = "/douyin/publish/list",method = RequestMethod.GET)
     public String getPublishedVideoList(Integer userId, Model model){
         List<Video> publishedVideoList = baseService.getPublishedVideoList(userId);
         model.addAttribute("list", publishedVideoList);

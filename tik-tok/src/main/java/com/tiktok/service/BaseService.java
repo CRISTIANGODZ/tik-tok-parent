@@ -1,5 +1,6 @@
 package com.tiktok.service;
 
+import com.tiktok.pojo.Good;
 import com.tiktok.pojo.User;
 import com.tiktok.pojo.Video;
 
@@ -53,5 +54,13 @@ public interface BaseService {
      * @param videoId
      */
     void cancelGood(Integer userId, Integer videoId);
+
+    /**
+     * 获取某个用户的点赞列表
+     *
+     * @param userId
+     * @return
+     */
+    List<Good> getGoodVideoList(Integer userId);
 }
 
