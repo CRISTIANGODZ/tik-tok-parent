@@ -1,5 +1,6 @@
 package com.tiktok.service;
 
+import com.tiktok.pojo.Comment;
 import com.tiktok.pojo.Good;
 import com.tiktok.pojo.User;
 import com.tiktok.pojo.Video;
@@ -62,5 +63,18 @@ public interface BaseService {
      * @return
      */
     List<Good> getGoodVideoList(Integer userId);
+
+    /**
+     * 评论接口：添加评论
+     * @param comment
+     */
+    void addComment(Comment comment);
+
+    /**
+     * 评论接口：删除评论
+     * @param comment
+     */
+    void deleteComment(Comment comment);
+
 }
 

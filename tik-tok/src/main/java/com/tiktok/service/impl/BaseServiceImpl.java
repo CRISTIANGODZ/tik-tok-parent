@@ -1,9 +1,7 @@
 package com.tiktok.service.impl;
 
-import com.tiktok.mapper.GoodMapper;
-import com.tiktok.mapper.UserInformationMapper;
-import com.tiktok.mapper.UserMapper;
-import com.tiktok.mapper.VideoMapper;
+import com.tiktok.mapper.*;
+import com.tiktok.pojo.Comment;
 import com.tiktok.pojo.Good;
 import com.tiktok.pojo.User;
 import com.tiktok.pojo.Video;
@@ -34,6 +32,9 @@ public class BaseServiceImpl implements BaseService{
 
     @Autowired
     private GoodMapper goodMapper;
+
+    @Autowired
+    private CommentMapper commentMapper;
 
     /**
      * 注册用户信息
@@ -118,5 +119,23 @@ public class BaseServiceImpl implements BaseService{
     public List<Good> getGoodVideoList(Integer userId) {
         List<Good> goodVideoList = goodMapper.getGoodVideoList(userId);
         return goodVideoList;
+    }
+
+    /**
+     * 评论接口：添加评论
+     * @param comment
+     */
+    @Override
+    public void addComment(Comment comment) {
+        commentMapper.addComment(comment);
+    }
+
+    /**
+     * 评论接口：删除评论
+     * @param comment
+     */
+    @Override
+    public void deleteComment(Comment comment) {
+        commentMapper.deleteComment(comment);
     }
 }

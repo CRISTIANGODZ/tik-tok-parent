@@ -1,5 +1,6 @@
 package com.tiktok.controller;
 
+import com.tiktok.pojo.Comment;
 import com.tiktok.pojo.Good;
 import com.tiktok.service.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,28 @@ public class ExtensionControllerONE {
     public String getGoodListController(Integer userId,Model model){
         List<Good> goodVideoList = baseService.getGoodVideoList(userId);
         model.addAttribute("goodVideoList",goodVideoList);
+        return "success";
+    }
+
+    /**
+     * 评论接口
+     * @param comment:
+     * userId(代替了token) videoId commmentId commentContext
+     * @param actionType
+     * value=1是添加 value=2是删除
+     * @return
+     */
+    @RequestMapping(value = "/douyin/comment/action",method = RequestMethod.POST)
+    public String giveComment(Comment comment,Integer actionType){
+        //actionType是1则添加评论
+        if (actionType == 1){
+            baseService.addComment(comment);
+        } else if (actionType == 2){
+            //actionType是2则删除评论
+            baseService.deleteComment(comment);
+        } else {
+            return "errorPage/normalError";
+        }
         return "success";
     }
 
