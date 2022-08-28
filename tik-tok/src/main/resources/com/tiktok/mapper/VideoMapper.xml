@@ -48,6 +48,13 @@
         where video_id = #{videoId}
     </select>
 
+    <!--Video getCommentListStepTwo(@Param("videoId") Integer videoId);-->
+    <select id="getCommentListStepTwo" resultType="Video">
+        select video_title,video_init_time,video_good_number
+        from t_video
+        where video_id = #{videoId}
+    </select>
+
     <!--上面撰写sql语句-->
 
 </mapper>

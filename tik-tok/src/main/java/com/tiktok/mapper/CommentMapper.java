@@ -1,6 +1,9 @@
 package com.tiktok.mapper;
 
 import com.tiktok.pojo.Comment;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @auther DyingZhang
@@ -20,4 +23,11 @@ public interface CommentMapper {
      * @param comment
      */
     void deleteComment(Comment comment);
+
+    /**
+     * 评论列表接口：获取评论列表
+     * @param videoId
+     * @param userId
+     */
+    List<Comment> getCommentList(@Param("videoId") Integer videoId, @Param("userId") Integer userId);
 }

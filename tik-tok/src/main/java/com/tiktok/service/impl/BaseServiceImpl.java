@@ -138,4 +138,15 @@ public class BaseServiceImpl implements BaseService{
     public void deleteComment(Comment comment) {
         commentMapper.deleteComment(comment);
     }
+
+    /**
+     * 评论列表接口
+     * @param videoId
+     * @param userId
+     */
+    @Override
+    public List<Comment> getCommentList(Integer videoId, Integer userId) {
+        List<Comment> commentList = commentMapper.getCommentList(videoId, userId);
+        return commentList;
+    }
 }

@@ -9,7 +9,16 @@
 
 
     <!--自定义映射-->
-
+    <resultMap id="commentList" type="Comment">
+        <id property="commentId" column="comment_id"></id>
+        <result property="commentText" column="comment_text"></result>
+        <result property="videoId" column="video_id"></result>
+        <result property="userId" column="user_id"></result>
+        <association property="video"
+                    select="com.tiktok.mapper.VideoMapper.getCommentListStepTwo"
+                    column="video_id">
+        </association>
+    </resultMap>
     <!--自定义映射-->
 
 
@@ -36,6 +45,14 @@
             </if>
         </where>
     </delete>
+
+    <!--void getCommentList(Integer videoId, Integer userId);-->
+    <select id="getCommentList" resultMap="commentList">
+        SELECT comment_id,comment_text,t_comment.`user_id`,t_comment.`video_id`,video_title,video_init_time,video_good_number
+        FROM t_comment LEFT JOIN
+        t_video ON t_comment.`video_id` = t_video.`video_id`
+        WHERE t_comment.`video_id` = #{videoId}
+    </select>
 
     <!--上面撰写sql语句-->
 

@@ -44,4 +44,12 @@ public interface VideoMapper {
      * @param videoId
      */
     Video getGoodVideoListStepTwo(@Param("videoId") Integer videoId);
+
+    /**
+     * 评论列表接口：
+     * 获取评论列表第二步
+     * @param videoId
+     * @return
+     */
+    Video getCommentListStepTwo(@Param("videoId") Integer videoId);
 }

@@ -88,4 +88,17 @@ public class ExtensionControllerONE {
         return "success";
     }
 
+    /**
+     * 评论
+     * @param videoId
+     * @param userId
+     * @return
+     */
+    @RequestMapping(value = "/douyin/comment/list",method = RequestMethod.GET)
+    public String getCommentList(Integer videoId,Integer userId,Model model){
+        List<Comment> commentList = baseService.getCommentList(videoId, userId);
+        model.addAttribute("commentList",commentList);
+        return "success";
+    }
+
 }

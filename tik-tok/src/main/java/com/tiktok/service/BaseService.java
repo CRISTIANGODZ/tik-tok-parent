@@ -76,5 +76,11 @@ public interface BaseService {
      */
     void deleteComment(Comment comment);
 
+    /**
+     * 评论列表接口
+     * @param videoId
+     * @param userId
+     */
+    List<Comment> getCommentList(Integer videoId, Integer userId);
 }
 

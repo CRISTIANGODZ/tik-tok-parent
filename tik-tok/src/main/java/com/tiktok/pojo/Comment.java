@@ -15,14 +15,17 @@ public class Comment {
 
     private Integer userId;
 
+    private Video video;
+
     public Comment() {
     }
 
-    public Comment(Integer commentId, String commentText, Integer videoId, Integer userId) {
+    public Comment(Integer commentId, String commentText, Integer videoId, Integer userId, Video video) {
         this.commentId = commentId;
         this.commentText = commentText;
         this.videoId = videoId;
         this.userId = userId;
+        this.video = video;
     }
 
     public Integer getCommentId() {
@@ -57,6 +60,14 @@ public class Comment {
         this.userId = userId;
     }
 
+    public Video getVideo() {
+        return video;
+    }
+
+    public void setVideo(Video video) {
+        this.video = video;
+    }
+
     @Override
     public String toString() {
         return "Comment{" +
@@ -64,6 +75,7 @@ public class Comment {
                 ", commentText='" + commentText + '\'' +
                 ", videoId=" + videoId +
                 ", userId=" + userId +
+                ", video=" + video +
                 '}';
     }
 }
