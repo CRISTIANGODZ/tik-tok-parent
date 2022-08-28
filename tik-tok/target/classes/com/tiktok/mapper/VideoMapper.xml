@@ -17,8 +17,8 @@
 
     <!--void initVideoColumnByUserId(Video video);-->
     <insert id="initVideoColumnByUserId" parameterType="Video">
-        INSERT INTO t_video(video_title,video_init_time,video_good_number,user_id)
-        VALUES(#{videoTitle},NOW(),#{videoGoodNumber},#{userId})
+        INSERT INTO t_video(video_title,video_init_time,video_good_number,user_id,video_address)
+        VALUES(#{videoTitle},NOW(),#{videoGoodNumber},#{userId},#{videoAddress})
     </insert>
 
     <!--List getPublishedVideoList(Integer userId);-->
@@ -53,6 +53,12 @@
         select video_title,video_init_time,video_good_number
         from t_video
         where video_id = #{videoId}
+    </select>
+
+    <!--void getVideo();-->
+    <select id="getVideo" resultType="map">
+        select *
+        from t_video
     </select>
 
     <!--上面撰写sql语句-->

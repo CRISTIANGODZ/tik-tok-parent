@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @auther DyingZhang
@@ -69,8 +70,8 @@ public class BaseServiceImpl implements BaseService{
      *      video_id(自增),user_id,video_title,video_init_time(NOW()直接嵌套sql语句),video_good_number(0)
      */
     @Override
-    public void dealWithUserVideoInformation(Integer userId, String videoTitle) {
-        Video video = new Video(userId, null, videoTitle, null, 0);
+    public void dealWithUserVideoInformation(Integer userId, String videoTitle, String finalPath) {
+        Video video = new Video(userId, null, videoTitle, null, 0,finalPath);
         videoMapper.initVideoColumnByUserId(video);
     }
 
@@ -148,5 +149,14 @@ public class BaseServiceImpl implements BaseService{
     public List<Comment> getCommentList(Integer videoId, Integer userId) {
         List<Comment> commentList = commentMapper.getCommentList(videoId, userId);
         return commentList;
+    }
+
+    /**
+     * 视频流接口
+     */
+    @Override
+    public List<Map<String, Object>> getVideo() {
+        List<Map<String, Object>> video = videoMapper.getVideo();
+        return video;
     }
 }

@@ -19,15 +19,18 @@ public class Video {
 
     private Integer videoGoodNumber;
 
+    private String videoAddress;
+
     public Video() {
     }
 
-    public Video(Integer userId, Integer videoId, String videoTitle, Date videoInitTime, Integer videoGoodNumber) {
+    public Video(Integer userId, Integer videoId, String videoTitle, Date videoInitTime, Integer videoGoodNumber, String videoAddress) {
         this.userId = userId;
         this.videoId = videoId;
         this.videoTitle = videoTitle;
         this.videoInitTime = videoInitTime;
         this.videoGoodNumber = videoGoodNumber;
+        this.videoAddress = videoAddress;
     }
 
     public Integer getUserId() {
@@ -70,6 +73,14 @@ public class Video {
         this.videoGoodNumber = videoGoodNumber;
     }
 
+    public String getVideoAddress() {
+        return videoAddress;
+    }
+
+    public void setVideoAddress(String videoAddress) {
+        this.videoAddress = videoAddress;
+    }
+
     @Override
     public String toString() {
         return "Video{" +
@@ -78,6 +89,7 @@ public class Video {
                 ", videoTitle='" + videoTitle + '\'' +
                 ", videoInitTime=" + videoInitTime +
                 ", videoGoodNumber=" + videoGoodNumber +
+                ", videoAddress='" + videoAddress + '\'' +
                 '}';
     }
 }

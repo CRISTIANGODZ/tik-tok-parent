@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -112,7 +113,7 @@ public class BaseController {
         //上传文件
         video.transferTo(new File(finalPath));
         //处理用户和视频的信息
-        baseService.dealWithUserVideoInformation(userId,videoTitle);
+        baseService.dealWithUserVideoInformation(userId,videoTitle,finalPath);
         return "success";
     }
 
@@ -135,6 +136,11 @@ public class BaseController {
      * latest_time
      * token(用user_id代替)
      */
-
+    @RequestMapping(value = "/douyin/feed",method = RequestMethod.GET)
+    public String getVideoControl(Model model){
+        List<Map<String, Object>> video = baseService.getVideo();
+        model.addAttribute("video",video);
+        return "success";
+    }
 
 }

@@ -2,7 +2,7 @@ package com.tiktok.pojo;
 
 import com.alibaba.druid.sql.visitor.functions.Char;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * @auther DyingZhang

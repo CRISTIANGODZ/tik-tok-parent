@@ -6,6 +6,7 @@ import com.tiktok.pojo.User;
 import com.tiktok.pojo.Video;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @auther DyingZhang
@@ -33,7 +34,7 @@ public interface BaseService {
     /**
      * 视频投稿接口：处理用户和视频的信息
      */
-    void dealWithUserVideoInformation(Integer userId, String videoTitle);
+    void dealWithUserVideoInformation(Integer userId, String videoTitle, String finalPath);
 
     /**
      * 显示视频列表
@@ -82,5 +83,10 @@ public interface BaseService {
      * @param userId
      */
     List<Comment> getCommentList(Integer videoId, Integer userId);
+
+    /**
+     * 视频流接口
+     */
+    List<Map<String, Object>> getVideo();
 }
 

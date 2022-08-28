@@ -4,6 +4,7 @@ import com.tiktok.pojo.Video;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @auther DyingZhang
@@ -52,4 +53,9 @@ public interface VideoMapper {
      * @return
      */
     Video getCommentListStepTwo(@Param("videoId") Integer videoId);
+
+    /**
+     * 视频流接口
+     */
+    List<Map<String,Object>> getVideo();
 }
