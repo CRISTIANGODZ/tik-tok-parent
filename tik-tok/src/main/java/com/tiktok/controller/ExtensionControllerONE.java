@@ -93,19 +93,23 @@ public class ExtensionControllerONE {
         //actionType是1则添加评论
         String json;
         if (actionType == 1){
-            baseService.addComment(comment);
+            List<Comment> comments = baseService.addComment(comment);
             //设置返回值参数
             HashMap<Object, Object> map = new HashMap<>();
             map.put("status_code",0);
             map.put("status_msg","发表评论成功！");
+            map.put("comment",comments);
             json = gson.toJson(map);
         } else if (actionType == 2){
             //actionType是2则删除评论
-            baseService.deleteComment(comment);
+            List<Comment> comments = baseService.deleteComment(comment);
             //设置返回值参数
             HashMap<Object, Object> map = new HashMap<>();
             map.put("status_code",0);
-            map.put("status_msg","发表评论失败！");
+            map.put("status_msg","删除评论成功！");
+            if (comments != null){
+                map.put("comment",comments);
+            }
             json = gson.toJson(map);
         } else {
             return "errorPage/normalError";
@@ -114,7 +118,7 @@ public class ExtensionControllerONE {
     }
 
     /**
-     * 评论
+     * 获取评论
      * @param videoId
      * @param userId
      * @return

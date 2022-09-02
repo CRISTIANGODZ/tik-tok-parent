@@ -124,20 +124,28 @@ public class BaseServiceImpl implements BaseService{
 
     /**
      * 评论接口：添加评论
+     *
      * @param comment
+     * @return
      */
     @Override
-    public void addComment(Comment comment) {
+    public List<Comment> addComment(Comment comment) {
         commentMapper.addComment(comment);
+        List<Comment> commentList = getCommentList(comment.getVideoId(),comment.getUserId());
+        return commentList;
     }
 
     /**
      * 评论接口：删除评论
+     *
      * @param comment
+     * @return
      */
     @Override
-    public void deleteComment(Comment comment) {
+    public List<Comment> deleteComment(Comment comment) {
         commentMapper.deleteComment(comment);
+        List<Comment> commentList = getCommentList(comment.getVideoId(),comment.getUserId());
+        return commentList;
     }
 
     /**

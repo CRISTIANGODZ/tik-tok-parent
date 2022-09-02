@@ -25,7 +25,7 @@
     <!--下面撰写sql语句-->
 
     <!--void addComment(Comment comment);-->
-    <insert id="addComment" parameterType="Comment">
+    <insert id="addComment" parameterType="Comment" useGeneratedKeys="true" keyProperty="commentId">
         insert into t_comment(comment_id,comment_text,video_id,user_id)
         values (null,#{commentText},#{videoId},#{userId})
     </insert>
@@ -38,10 +38,10 @@
                 user_id = #{userId}
             </if>
             <if test="videoId != null and videoId != ''">
-                AND video_id = #{VideoId}
+                AND video_id = #{videoId}
             </if>
             <if test="commentId != null and commentId != ''">
-                AND comment_id = #{CommentId}
+                AND comment_id = #{commentId}
             </if>
         </where>
     </delete>

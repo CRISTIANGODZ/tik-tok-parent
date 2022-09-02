@@ -57,7 +57,7 @@ public class BaseController {
         //处理返回值参数
         HashMap<Object, Object> map = new HashMap<>();
         map.put("status_code",0);
-        map.put("user_id",user.getUserId());
+        map.put("user_id",user.getUserId());//在UserMapper中实现了获取主键
         map.put("token",user.getUserEmail()+user.getUserPassword());
         String json = gson.toJson(map);
         return json;

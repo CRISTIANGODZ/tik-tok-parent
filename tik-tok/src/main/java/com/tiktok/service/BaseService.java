@@ -67,15 +67,19 @@ public interface BaseService {
 
     /**
      * 评论接口：添加评论
+     *
      * @param comment
+     * @return
      */
-    void addComment(Comment comment);
+    List<Comment> addComment(Comment comment);
 
     /**
      * 评论接口：删除评论
+     *
      * @param comment
+     * @return
      */
-    void deleteComment(Comment comment);
+    List<Comment> deleteComment(Comment comment);
 
     /**
      * 评论列表接口
