@@ -26,8 +26,9 @@
     <!--下面撰写sql语句-->
 
     <!--void addUser(User user);-->
-    <insert id="addUser" parameterType="User">
-        insert into t_user_register values (null,#{userEmail},#{userPassword})
+    <insert id="addUser" parameterType="User" useGeneratedKeys="true" keyProperty="userId">
+        insert into t_user_register(user_email,user_password)
+        values (#{userEmail},#{userPassword})
     </insert>
 
     <!--Integer loginUser(UserRegister user);-->

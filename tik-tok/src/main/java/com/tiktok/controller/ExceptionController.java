@@ -20,10 +20,4 @@ public class ExceptionController {
         model.addAttribute("arithmeticException",arithmeticException);
         return "errorPage/loginError";
     }
-
-    @ExceptionHandler(DuplicateKeyException.class)
-    public String DuplicateKeyException(DuplicateKeyException duplicateKeyException, Model model){
-        model.addAttribute("duplicateKeyException",duplicateKeyException);
-        return "errorPage/registerError";
-    }
 }

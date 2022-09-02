@@ -1,20 +1,20 @@
 package com.tiktok.controller;
 
+import com.google.gson.Gson;
 import com.tiktok.pojo.User;
 import com.tiktok.pojo.Video;
 import com.tiktok.service.impl.BaseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -37,9 +37,10 @@ import java.util.UUID;
  *     -跳转到上传视频页面/douyin/to/publish --> GET
  *
  */
-@Controller
+@RestController
 public class BaseController {
 
+    private static Gson gson = new Gson();
     @Autowired
     private BaseServiceImpl baseService;
 
@@ -49,10 +50,17 @@ public class BaseController {
      * 参数：userEmail、userPassword
      * /douyin/user/register --> POST
      */
+
     @RequestMapping(value = "/douyin/user/register", method = RequestMethod.POST)
     public String userRegisterController(User user){
         baseService.registeUser(user);
-        return "success";
+        //处理返回值参数
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("status_code",0);
+        map.put("user_id",user.getUserId());
+        map.put("token",user.getUserEmail()+user.getUserPassword());
+        String json = gson.toJson(map);
+        return json;
     }
 
     /**
@@ -60,16 +68,18 @@ public class BaseController {
      * 参数：userEmail、userPassword
      */
     @RequestMapping(value = "/douyin/user/login", method = RequestMethod.GET)
-    public String userLoginController(User user, Model model){
+    public String userLoginController(User user){
         Integer userId = baseService.getLogin(user);
         if (userId.equals(null)){
-            System.out.println(1/0);
+            return null;
         } else {
-            String token = user.getUserEmail() + user.getUserPassword();
-            model.addAttribute(token);
-            model.addAttribute(userId);
+            HashMap<Object, Object> map = new HashMap<>();
+            map.put("status_code",0);
+            map.put("user_id",userId);
+            map.put("token",user.getUserEmail()+user.getUserPassword());
+            String json = gson.toJson(map);
+            return json;
         }
-        return "success";
     }
 
     /**
@@ -77,10 +87,14 @@ public class BaseController {
      * @param userId
      */
     @RequestMapping("/douyin/user")
-    public String queryUserInformation(Integer userId, Model model){
+    public String queryUserInformation(Integer userId){
         User user = baseService.queryUserInformation(userId);
-        model.addAttribute(user);
-        return "userInformation";
+        //处理返回值参数
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("status_code",0);
+        map.put("user",user);
+        String json = gson.toJson(map);
+        return json;
     }
 
     /**
@@ -114,7 +128,12 @@ public class BaseController {
         video.transferTo(new File(finalPath));
         //处理用户和视频的信息
         baseService.dealWithUserVideoInformation(userId,videoTitle,finalPath);
-        return "success";
+        //处理返回值参数
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("status_code",0);
+        map.put("status_msg","上传视频成功！");
+        String json = gson.toJson(map);
+        return json;
     }
 
     /**
@@ -124,10 +143,15 @@ public class BaseController {
      * token(暂时不用)
      */
     @RequestMapping(value = "/douyin/publish/list",method = RequestMethod.GET)
-    public String getPublishedVideoList(Integer userId, Model model){
-        List<Video> publishedVideoList = baseService.getPublishedVideoList(userId);
-        model.addAttribute("list", publishedVideoList);
-        return "videoList";
+    public String getPublishedVideoList(Integer userId){
+        List<Video> videoList = baseService.getPublishedVideoList(userId);
+        //设置返回值参数
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("status_code",0);
+        map.put("status_msg","获取上传视频列表成功！");
+        map.put("video_list",videoList);
+        String json = gson.toJson(map);
+        return json;
     }
 
     /**
@@ -137,10 +161,15 @@ public class BaseController {
      * token(用user_id代替)
      */
     @RequestMapping(value = "/douyin/feed",method = RequestMethod.GET)
-    public String getVideoControl(Model model){
+    public String getVideoControl(){
         List<Map<String, Object>> video = baseService.getVideo();
-        model.addAttribute("video",video);
-        return "success";
+        //设置返回值参数
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("status_code",0);
+        map.put("status_msg","获取视频流成功！");
+        map.put("video_list",video);
+        String json = gson.toJson(map);
+        return json;
     }
 
 }
