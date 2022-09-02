@@ -91,6 +91,6 @@ public interface BaseService {
     /**
      * 视频流接口
      */
-    List<Map<String, Object>> getVideo();
+    List<Video> getVideo();
 }
 

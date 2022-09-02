@@ -19,17 +19,20 @@ public class Video {
 
     private Integer videoGoodNumber;
 
+    private Integer videoCommentNumber;
+
     private String videoAddress;
 
     public Video() {
     }
 
-    public Video(Integer userId, Integer videoId, String videoTitle, Date videoInitTime, Integer videoGoodNumber, String videoAddress) {
+    public Video(Integer userId, Integer videoId, String videoTitle, Date videoInitTime, Integer videoGoodNumber, Integer videoCommentNumber, String videoAddress) {
         this.userId = userId;
         this.videoId = videoId;
         this.videoTitle = videoTitle;
         this.videoInitTime = videoInitTime;
         this.videoGoodNumber = videoGoodNumber;
+        this.videoCommentNumber = videoCommentNumber;
         this.videoAddress = videoAddress;
     }
 
@@ -73,6 +76,14 @@ public class Video {
         this.videoGoodNumber = videoGoodNumber;
     }
 
+    public Integer getVideoCommentNumber() {
+        return videoCommentNumber;
+    }
+
+    public void setVideoCommentNumber(Integer videoCommentNumber) {
+        this.videoCommentNumber = videoCommentNumber;
+    }
+
     public String getVideoAddress() {
         return videoAddress;
     }
@@ -89,6 +100,7 @@ public class Video {
                 ", videoTitle='" + videoTitle + '\'' +
                 ", videoInitTime=" + videoInitTime +
                 ", videoGoodNumber=" + videoGoodNumber +
+                ", videoCommentNumber=" + videoCommentNumber +
                 ", videoAddress='" + videoAddress + '\'' +
                 '}';
     }

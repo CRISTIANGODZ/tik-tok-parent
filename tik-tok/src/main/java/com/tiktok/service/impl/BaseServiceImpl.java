@@ -71,7 +71,7 @@ public class BaseServiceImpl implements BaseService{
      */
     @Override
     public void dealWithUserVideoInformation(Integer userId, String videoTitle, String finalPath) {
-        Video video = new Video(userId, null, videoTitle, null, 0,finalPath);
+        Video video = new Video(userId, null, videoTitle, null, 0,0,finalPath);
         videoMapper.initVideoColumnByUserId(video);
     }
 
@@ -124,12 +124,14 @@ public class BaseServiceImpl implements BaseService{
 
     /**
      * 评论接口：添加评论
-     *
+     * 先对被评论视频的评论数+1
+     * 再添加评论
      * @param comment
      * @return
      */
     @Override
     public List<Comment> addComment(Comment comment) {
+        videoMapper.giveComment(comment.getVideoId());
         commentMapper.addComment(comment);
         List<Comment> commentList = getCommentList(comment.getVideoId(),comment.getUserId());
         return commentList;
@@ -137,12 +139,14 @@ public class BaseServiceImpl implements BaseService{
 
     /**
      * 评论接口：删除评论
-     *
+     * 先对被评论视频的评论数-1
+     * 再删除评论
      * @param comment
      * @return
      */
     @Override
     public List<Comment> deleteComment(Comment comment) {
+        videoMapper.cancelComment(comment.getVideoId());
         commentMapper.deleteComment(comment);
         List<Comment> commentList = getCommentList(comment.getVideoId(),comment.getUserId());
         return commentList;
@@ -163,8 +167,8 @@ public class BaseServiceImpl implements BaseService{
      * 视频流接口
      */
     @Override
-    public List<Map<String, Object>> getVideo() {
-        List<Map<String, Object>> video = videoMapper.getVideo();
+    public List<Video> getVideo() {
+        List<Video> video = videoMapper.getVideo();
         return video;
     }
 }

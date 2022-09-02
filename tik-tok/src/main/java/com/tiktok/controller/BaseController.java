@@ -14,10 +14,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @auther DyingZhang
@@ -162,12 +159,20 @@ public class BaseController {
      */
     @RequestMapping(value = "/douyin/feed",method = RequestMethod.GET)
     public String getVideoControl(){
-        List<Map<String, Object>> video = baseService.getVideo();
+        List<Video> videoList = baseService.getVideo();
+        long latestTime = videoList.get(0).getVideoInitTime().getTime();
+        for (Video video : videoList){
+            long time = video.getVideoInitTime().getTime();
+            if (time < latestTime){
+                latestTime = time;
+            }
+        }
         //设置返回值参数
         HashMap<Object, Object> map = new HashMap<>();
         map.put("status_code",0);
         map.put("status_msg","获取视频流成功！");
-        map.put("video_list",video);
+        map.put("video_list",videoList);
+        map.put("next_time",latestTime);
         String json = gson.toJson(map);
         return json;
     }

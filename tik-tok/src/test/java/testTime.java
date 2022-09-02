@@ -1,7 +1,7 @@
 import com.alibaba.druid.sql.visitor.functions.Now;
 import org.junit.Test;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * @auther DyingZhang
@@ -11,7 +11,9 @@ import java.sql.Date;
 public class testTime {
     @Test
     public void testTime(){
-
+        Date date = new Date();
+        long time = date.getTime();
+        System.out.println(time);
 
     }
 }

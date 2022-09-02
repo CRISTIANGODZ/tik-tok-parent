@@ -48,6 +48,20 @@
         where video_id = #{videoId}
     </select>
 
+    <!--void giveComment(@Param("videoId") Integer videoId);-->
+    <update id="giveComment">
+        update t_video
+        set video_comment_number = video_comment_number + 1
+        where video_id = #{videoId}
+    </update>
+
+    <!--void cancelComment(Integer videoId);-->
+    <update id="cancelComment">
+        update t_video
+        set video_comment_number = video_comment_number - 1
+        where video_id = #{videoId}
+    </update>
+
     <!--Video getCommentListStepTwo(@Param("videoId") Integer videoId);-->
     <select id="getCommentListStepTwo" resultType="Video">
         select video_title,video_init_time,video_good_number
@@ -55,8 +69,8 @@
         where video_id = #{videoId}
     </select>
 
-    <!--void getVideo();-->
-    <select id="getVideo" resultType="map">
+    <!--List<Video> getVideo();-->
+    <select id="getVideo" resultType="Video">
         select *
         from t_video
     </select>

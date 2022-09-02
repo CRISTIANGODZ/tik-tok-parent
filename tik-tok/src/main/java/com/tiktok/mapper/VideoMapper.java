@@ -47,6 +47,18 @@ public interface VideoMapper {
     Video getGoodVideoListStepTwo(@Param("videoId") Integer videoId);
 
     /**
+     * 评论接口：添加评论
+     * 将被评论视频的评论数+1
+     */
+    void giveComment(@Param("videoId") Integer videoId);
+
+    /**
+     * 评论接口：删除评论
+     * 将被评论视频的评论数-1
+     */
+    void cancelComment(Integer videoId);
+
+    /**
      * 评论列表接口：
      * 获取评论列表第二步
      * @param videoId
@@ -57,5 +69,8 @@ public interface VideoMapper {
     /**
      * 视频流接口
      */
-    List<Map<String,Object>> getVideo();
+    List<Video> getVideo();
+
+
+
 }
