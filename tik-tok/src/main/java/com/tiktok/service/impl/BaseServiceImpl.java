@@ -67,7 +67,7 @@ public class BaseServiceImpl implements BaseService{
      * 视频投稿接口：处理用户和视频的信息
      * 操作：
      *  根据userId创建并添加userId的视频属性：
-     *      video_id(自增),user_id,video_title,video_init_time(NOW()直接嵌套sql语句),video_good_number(0)
+     *      video_id(自增),user_id,video_title,video_init_time(NOW()直接嵌套sql语句),video_good_number(0),video_comment_number(0)
      */
     @Override
     public void dealWithUserVideoInformation(Integer userId, String videoTitle, String finalPath) {
