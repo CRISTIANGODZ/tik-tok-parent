@@ -48,7 +48,7 @@
 
     <!--void getCommentList(Integer videoId, Integer userId);-->
     <select id="getCommentList" resultMap="commentList">
-        SELECT comment_id,comment_text,t_comment.`user_id`,t_comment.`video_id`,video_title,video_init_time,video_good_number
+        SELECT comment_id,comment_text,t_comment.`user_id`,t_comment.`video_id`
         FROM t_comment LEFT JOIN
         t_video ON t_comment.`video_id` = t_video.`video_id`
         WHERE t_comment.`video_id` = #{videoId}

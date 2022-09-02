@@ -17,8 +17,8 @@
 
     <!--void initVideoColumnByUserId(Video video);-->
     <insert id="initVideoColumnByUserId" parameterType="Video">
-        INSERT INTO t_video(video_title,video_init_time,video_good_number,user_id,video_address)
-        VALUES(#{videoTitle},NOW(),#{videoGoodNumber},#{userId},#{videoAddress})
+        INSERT INTO t_video(video_title,video_init_time,video_good_number,video_comment_number,user_id,video_address)
+        VALUES(#{videoTitle},NOW(),#{videoGoodNumber},#{videoCommentNumber},#{userId},#{videoAddress})
     </insert>
 
     <!--List getPublishedVideoList(Integer userId);-->
@@ -64,7 +64,7 @@
 
     <!--Video getCommentListStepTwo(@Param("videoId") Integer videoId);-->
     <select id="getCommentListStepTwo" resultType="Video">
-        select video_title,video_init_time,video_good_number
+        select video_title,video_init_time,video_good_number,video_comment_number
         from t_video
         where video_id = #{videoId}
     </select>
